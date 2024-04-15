@@ -1,0 +1,64 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+    <body>
+      <div class="row">
+
+          <div class="col">
+              <div style="margin-left: 40%;">
+                    <br>
+    <h3 style="font-family: 'Inter',sans-serif; font-size: 40px;color: #5282a4">About</h3>
+                  <div style="font-size:20px">
+    <p >Carlos Kosala</p>
+    <p>123 Main St, Omaha, NE, 12345</p>
+    <p>+1 9998881234</p>
+    <p style="color: #5282a4 !important">carlos.k@gmail.com</p>
+    <p>carlos.website.com</p>
+                       </div>
+                    <form method="post">
+
+            {% csrf_token %}
+                         <h3 style="font-family: 'Inter',sans-serif; font-size: 40px;color: #5282a4">Contact</h3>
+                        <div class="row">
+                             <div class="col">
+            <label for="id_name">Name*</label>
+                              </div>
+                             <div class="col">
+            <input type="text" id="id_name" name="name">
+                             </div>
+                            </div>
+               <br>
+                         <div class="row">
+                             <div class="col">
+            <label for="id_email">Email*</label>
+                                   </div>
+                             <div class="col">
+            <input type="email" id="id_email" name="email">
+                                   </div>
+                            </div>
+               <br>
+                         <div class="row">
+                             <div class="col">
+            <label for="id_message">Message*</label>
+                                  </div>
+                             <div class="col">
+            <textarea id="id_message" cols="23" name="message"></textarea>
+                                   <button  style="background-color: #5282a4;padding: 4px 12px 4px 12px;color: white;border: none;border-radius: 4px;font-size: 18px "  type="submit">Submit form</button>
+                          </div>
+                            </div>
+               <br>
+
+        </form>
+          </div>
+
+               </div>
+          <div class="col">
+                <br>
+   <img  style="width: 60% ;height: 90%" src="../../media/CK.png">
+               </div>
+           </div>
+     </body>
+     <style>
+
+    </style>
+{% endblock %}
