@@ -1,0 +1,57 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<div class="mx-auto p-2" style="width: 1000px;">
+
+    <h2 class="blue">Property Details</h2>
+    <br>
+    <p class="blue" style="font-size: 24px" >{{ property.name }} </p>
+
+<div class="image-grid">
+    <img src="{{ property.image1.url }}" alt="{{ property.name }}">
+    {% if property.image2 %}
+    <img src="{{ property.image2.url }}" alt="{{ property.name }}">
+    {% endif %}
+    {% if property.image3 %}
+    <img src="{{ property.image3.url }}" alt="{{ property.name }}">
+    {% endif %}
+    {% if property.image4 %}
+    <img src="{{ property.image4.url }}" alt="{{ property.name }}">
+    {% endif %}
+</div>
+<h2 class="blue">Description</h2>
+ <p>{{ property.description }}<br>
+    Address: {{ property.address }}<br>
+    Property Type: {{ property.property_type }}<br>
+    Neighborhood: {{ property.neighborhood }}<br>
+    Price: ${{ property.price }}<br>
+    Area: {{ property.area }} Sq.ft.<br>
+    Balcony: {% if property.balcony %}Yes{% else %}No{% endif %}<br>
+    Status: {{ property.status }}</p>
+<button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px "> I'm Interested  </button><br><br>
+<button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px "> Contact Agent</button><br><br>
+
+
+
+</div>
+    <style>
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.image-grid img {
+    width: calc(50% - 10px);
+    height: auto;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .image-grid img {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+    </style>
+{% endblock %}

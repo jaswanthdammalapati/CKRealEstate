@@ -1,0 +1,27 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<div class="mx-auto p-2" style="width: 1000px;">
+        <p class="blue" style="font-size: 40px;">Explore Omaha</p>
+        <p class="blue" style="font-size: 30px;">Events in town</p>
+        {% for event in events %}
+            <div class="card mb-12">
+                <div class="row g-0">
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title blue">{{ event.name }}</h5>
+                            <p class="card-text">{{ event.description }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <img style="height: 220px;width: 420px;" src="{{ event.image.url }}" class="img-fluid " alt="{{ event.name }}">
+                    </div>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+

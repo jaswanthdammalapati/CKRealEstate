@@ -8,4 +8,7 @@ urlpatterns = [
                   path('login/', views.user_login, name='login'),
                   path('logout/', views.user_logout, name='logout'),
                   path('about/', views.about, name='about'),
+                  path('omaha_events/', views.omaha_events, name='events'),
+                  path('properties/', views.property_listings, name='property_listings'),
+                  path('property/<int:pk>/', views.property_detail, name='property_detail'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

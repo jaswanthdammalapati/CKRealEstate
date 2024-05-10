@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
+from .models import Event, Property
 
 
 def index(request):
@@ -29,3 +30,18 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('home')
+
+
+def omaha_events(request):
+    events = Event.objects.all()
+    return render(request, 'omaha_events.html', {'events': events})
+
+
+def property_listings(request):
+    properties = Property.objects.all()
+    return render(request, 'property_listings.html', {'properties': properties})
+
+
+def property_detail(request, pk):
+    property = get_object_or_404(Property, pk=pk)
+    return render(request, 'property_detail.html', {'property': property})
