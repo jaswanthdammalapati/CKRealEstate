@@ -28,8 +28,48 @@
     Area: {{ property.area }} Sq.ft.<br>
     Balcony: {% if property.balcony %}Yes{% else %}No{% endif %}<br>
     Status: {{ property.status }}</p>
-<button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px "> I'm Interested  </button><br><br>
-<button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px "> Contact Agent</button><br><br>
+<br>
+
+    <a href="{% url 'contact_agent' property_id=property.pk %}"><button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px " >Contact Agent</button></a>
+    <br><br>
+{% if user.is_authenticated %}
+
+{% if not property.featured %}
+
+    <form action="{% url 'mark_featured' property.pk %}" method="post">
+        {% csrf_token %}
+        <button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px " type="submit" onclick=showSuccessDialog()>Mark as Featured</button>
+    </form>
+
+{% endif %}
+
+    <form id="change-status-form" action="{% url 'change_status' property.pk %}" method="post">
+    {% csrf_token %}
+<p class="blue" style="font-size: 25px"> Change property status:</p>
+    <select name="status" onchange="this.form.submit()" style="font-size: large">
+        <option value="Available" {% if property.status == 'Available' %} selected {% endif %}>Available</option>
+        <option value="Sold" {% if property.status == 'Sold' %} selected {% endif %}>Sold</option>
+        <option value="Pending" {% if property.status == 'Pending' %} selected {% endif %}>Pending</option>
+    </select>
+</form>
+
+    <br>
+    <a href="{% url 'edit_property' property.pk %}"><button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px ">Edit Listing</button></a>
+    <br><br>
+    <form action="{% url 'delete_property' property.pk %}" method="post">
+    {% csrf_token %}
+    <button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px "  type="submit" onclick="return confirm('Are you sure you want to delete this property listing?');">Remove Listing</button>
+</form>
+
+    <br>
+{% endif %}
+<script>
+ function showSuccessDialog() {
+
+        alert("Property successfully marked as featured");
+    }
+</script>
+
 
 
 
@@ -54,4 +94,8 @@
 }
 
     </style>
+    <!-- Add these links to your HTML template -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 {% endblock %}

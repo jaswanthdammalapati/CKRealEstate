@@ -3,5 +3,20 @@
 
 
 
-<h1 class="display-3 text-center">A home is more than just a place to live, it's a place to create memories.</h1>
+
+    <div  class="mx-auto p-2" style="width: 1000px;">
+    <h1 class="display-4 text-center">A home is more than just a place to live, it's a place to create memories.</h1>
+    {% if featured_property %}
+        <br>
+    <h2 class="blue">Featured Property this week</h2>
+     <div class="property-card" >
+    <img src="{{ featured_property.image1.url }}" alt="{{ featured_property.name }}" style="width: 960px;height: 560px">
+        <h3 class="blue"  style="font-size: 28px;padding-top: 10px;" >{{ featured_property.name }}</h3>
+<p> Price: ${{ featured_property.price }}  <br> Size: {{ featured_property.area }} sq.ft.</p>
+<p>Click  <a style="text-decoration: none;font-weight: bold" class="blue" href="{% url 'property_detail' featured_property.id %}">here</a> to visit listing</p>
+
+
+     {% endif %}
+        </div>
+    </div>
 {% endblock %}

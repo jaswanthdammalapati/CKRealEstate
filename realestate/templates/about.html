@@ -15,7 +15,7 @@
     <p style="color: #5282a4 !important">carlos.k@gmail.com</p>
     <p>carlos.website.com</p>
                        </div>
-                    <form method="post">
+                    <form method="post" action="{% url 'contact_page' %}">
 
             {% csrf_token %}
                          <h3 style="font-family: 'Inter',sans-serif; font-size: 40px;color: #5282a4">Contact</h3>

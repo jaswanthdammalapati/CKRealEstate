@@ -1,0 +1,37 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+ <style>
+        #id_name{
+            margin-left: 18px;
+        }
+        #id_email{
+            margin-left: 24px;
+        }
+        #id_phone{
+            margin-left: 19px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+    </style>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="blue">Contact Agent for the property: {{ property.name }} </h2><br>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button style="background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px " type="submit" >Send Message</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

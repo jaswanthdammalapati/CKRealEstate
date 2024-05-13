@@ -1,0 +1,50 @@
+{% extends "navbar.html" %}
+{% block content %}
+<style>
+    #id_year{
+        margin-left: 24px;
+        width: 60px;
+    }
+    input[type=submit] {
+        margin-left: 400px;
+        background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px ;
+
+    }
+</style>
+<div class="mx-auto p-2" style="width: 1000px;">
+    <h1 class="blue">Generate Monthly Visitor Report</h1>
+<div style="border: 1px solid grey;padding: 20px 20px 10px;">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Generate Report">
+    </form>
+<br>
+ </div>
+<br>
+    <h3 class="blue">Report Details:</h3>
+{% if item in visitors_by_home_type or visitors_by_neighborhood or visitors_by_price_range %}
+    <h3>Number of Visitors by Home Type</h3>
+    <ul>
+        {% for item in visitors_by_home_type %}
+            <p>{{ item.property_type__property_type }}: {{ item.count }}</p>
+        {% endfor %}
+    </ul>
+    <h3>Number of Visitors by Neighborhood</h3>
+    <ul>
+        {% for item in visitors_by_neighborhood %}
+            <p>{{ item.neighborhood__neighborhood }}: {{ item.count }}</p>
+        {% endfor %}
+    </ul>
+    <h3>Number of Visitors by Price Range</h3>
+    <ul>
+        {% for item in visitors_by_price_range %}
+            <p>{{ item.price_range }}: {{ item.count }}</p>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'generate_excel_report' %}"><button style=" background-color: #5282a4;padding: 7px 12px 7px 12px;color: white;border: none;border-radius: 4px;font-size: 15px ;" >Download Excel Report</button></a>
+    {% else %}
+    <p>No search data recorded, please try another month</p>
+    {% endif %}
+</div>
+{% endblock  %}

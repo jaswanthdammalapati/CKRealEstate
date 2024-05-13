@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+</head>
+<body>
+    <h1>Report</h1>
+
+    <h2>Number of Visitors by Home Type</h2>
+    <ul>
+        {% for item in visitors_by_home_type %}
+            <li>{{ item.property_type__property_type }}: {{ item.count }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Number of Visitors by Neighborhood</h2>
+    <ul>
+        {% for item in visitors_by_neighborhood %}
+            <li>{{ item.neighborhood__neighborhood }}: {{ item.count }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Number of Visitors by Price Range</h2>
+    <ul>
+        {% for item in visitors_by_price_range %}
+            <li>{{ item.price_range }}: {{ item.count }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
